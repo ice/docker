@@ -8,7 +8,7 @@ RUN apk update \
     && apk add --no-cache \
         ${PHPIZE_DEPS} \
     && docker-php-source extract \
-    && MAKEFLAGS="-j $(nproc)" CFLAGS="${PHP_CFLAGS} -DALPINE_LINUX" pecl install \
+    && MAKEFLAGS="-j $(nproc)" CFLAGS="${PHP_CFLAGS} -fpermissive -DALPINE_LINUX" pecl install \
         ice-${ICE_VERSION} \
     && docker-php-ext-enable --ini-name 90-docker-php-ext-ice.ini ice \
     && docker-php-source delete \
